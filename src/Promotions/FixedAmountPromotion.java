@@ -43,8 +43,7 @@ public class FixedAmountPromotion implements Promotion {
                 throw new PromotionExpiredException("Promotion has expired.");
             }
 
-            throw new PromotionDoesNotApplyException(
-                    "Promotion does not apply to this order.");
+            throw new PromotionDoesNotApplyException("Promotion does not apply to this order.");
         }
 
         return Math.min(amount, context.getSubtotal());

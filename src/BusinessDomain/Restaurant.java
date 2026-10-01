@@ -36,7 +36,6 @@ public class Restaurant {
             throw new IllegalArgumentException("Cuisine category is required.");
         }
 
-        // Check if the cuisine is not found in the list
         if (cuisineCategories.stream().noneMatch(c -> c.equalsIgnoreCase(cuisine.trim()))) {
             cuisineCategories.add(cuisine.trim());
         }

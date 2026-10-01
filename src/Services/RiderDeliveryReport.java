@@ -8,10 +8,7 @@ public class RiderDeliveryReport {
     private long completedDeliveries;
     private double averageDuration;
 
-    public RiderDeliveryReport(
-            Rider rider,
-            long completedDeliveries,
-            double averageDuration) {
+    public RiderDeliveryReport(Rider rider, long completedDeliveries, double averageDuration) {
 
         this.rider = rider;
         this.completedDeliveries = completedDeliveries;

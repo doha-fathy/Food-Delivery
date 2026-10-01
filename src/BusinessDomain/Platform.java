@@ -235,10 +235,8 @@ public class Platform {
     }
 
     public boolean addReadyOrder(Order order) {
-        if (order == null
-                || order.getStatus() != OrderStatus.READY
-                || order.getRider() != null
-                || readyOrders.contains(order)) {
+        if (order == null || order.getStatus() != OrderStatus.READY
+                || order.getRider() != null || readyOrders.contains(order)) {
             return false;
         }
 
@@ -287,32 +285,18 @@ public class Platform {
                 .toList();
     }
 
-    public List<Restaurant> browseRestaurants(
-            String district,
-            String cuisine,
-            Double minimumRating,
-            Double priceCeiling) {
+    public List<Restaurant> browseRestaurants(String district, String cuisine,
+                            Double minimumRating, Double priceCeiling) {
 
-        return restaurants.values()
-                .stream()
+        return restaurants.values().stream()
                 .filter(restaurant -> restaurant.getStatus() == Enums.RestaurantStatus.OPEN)
-                .filter(restaurant -> district == null
-                        || district.trim().isEmpty()
-                        || restaurant.getDistrict().equalsIgnoreCase(district))
-                .filter(restaurant -> cuisine == null
-                        || cuisine.trim().isEmpty()
-                        || restaurant.getCuisineCategories()
-                        .stream()
+                .filter(restaurant -> district == null || district.trim().isEmpty() || restaurant.getDistrict().equalsIgnoreCase(district))
+                .filter(restaurant -> cuisine == null || cuisine.trim().isEmpty() || restaurant.getCuisineCategories().stream()
                         .anyMatch(c -> c.equalsIgnoreCase(cuisine)))
-                .filter(restaurant -> minimumRating == null
-                        || restaurant.getAverageRating() >= minimumRating)
-                .filter(restaurant -> priceCeiling == null
-                        || restaurant.getMenuItems()
-                        .stream()
-                        .anyMatch(item -> item.getPrice() <= priceCeiling))
-                .sorted(
-                        Comparator.comparing(Restaurant::getAverageRating)
-                                .reversed()
+                .filter(restaurant -> minimumRating == null || restaurant.getAverageRating() >= minimumRating)
+                .filter(restaurant -> priceCeiling == null || restaurant.getMenuItems()
+                        .stream().anyMatch(item -> item.getPrice() <= priceCeiling))
+                .sorted(Comparator.comparing(Restaurant::getAverageRating).reversed()
                                 .thenComparing(Restaurant::getName)
                 )
                 .toList();
@@ -337,8 +321,8 @@ public class Platform {
         return restaurants.values()
                 .stream()
                 .filter(restaurant -> restaurant.getName().toLowerCase().contains(text)
-                                        || restaurant.getCuisineCategories().stream()
-                                        .anyMatch(cuisine -> cuisine.toLowerCase().contains(text))
+                    || restaurant.getCuisineCategories().stream()
+                   .anyMatch(cuisine -> cuisine.toLowerCase().contains(text))
                 )
                 .toList();
     }

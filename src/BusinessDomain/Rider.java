@@ -41,23 +41,16 @@ public class Rider {
             );
         }
 
-        // ADDED - Validation: only available riders can receive orders
         if (availabilityStatus != AvailabilityStatus.AVAILABLE) {
-            throw new RiderAlreadyBusyException(
-                    "Rider is not available."
-            );
+            throw new RiderAlreadyBusyException("Rider is not available.");
         }
 
         if (order == null) {
-            throw new IllegalArgumentException(
-                    "Order is required."
-            );
+            throw new IllegalArgumentException("Order is required.");
         }
 
         if (order.getRider() != null) {
-            throw new RiderAlreadyBusyException(
-                    "Order is already assigned to a rider."
-            );
+            throw new RiderAlreadyBusyException("Order is already assigned to a rider.");
         }
 
         activeOrder = order;
@@ -84,19 +77,12 @@ public class Rider {
 
 
     public boolean canDeliver(Order order, double distance) {
-
-        return dispatchStrategy.canDeliver(
-                order,
-                distance
-        );
+        return dispatchStrategy.canDeliver(order, distance);
     }
 
 
     public double calculateDeliveryTime(double distance) {
-
-        return dispatchStrategy.calculateDeliveryTime(
-                distance
-        );
+        return dispatchStrategy.calculateDeliveryTime(distance);
     }
 
 
@@ -105,9 +91,7 @@ public class Rider {
     public void setId(int id) {
 
         if (id <= 0) {
-            throw new IllegalArgumentException(
-                    "Rider ID must be greater than zero."
-            );
+            throw new IllegalArgumentException("Rider ID must be greater than zero.");
         }
 
         this.id = id;
@@ -117,9 +101,7 @@ public class Rider {
     public void setName(String name) {
 
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException(
-                    "Rider name is required."
-            );
+            throw new IllegalArgumentException("Rider name is required.");
         }
 
         this.name = name;
@@ -129,9 +111,7 @@ public class Rider {
     public void setVehicleType(VehicleType vehicleType) {
 
         if (vehicleType == null) {
-            throw new IllegalArgumentException(
-                    "Vehicle type is required."
-            );
+            throw new IllegalArgumentException("Vehicle type is required.");
         }
 
         this.vehicleType = vehicleType;
@@ -140,33 +120,25 @@ public class Rider {
 
     public void setCurrentDistrict(String currentDistrict) {
 
-        if (currentDistrict == null ||
-                currentDistrict.trim().isEmpty()) {
-
-            throw new IllegalArgumentException(
-                    "Current district is required."
-            );
+        if (currentDistrict == null || currentDistrict.trim().isEmpty()) {
+            throw new IllegalArgumentException("Current district is required.");
         }
 
         this.currentDistrict = currentDistrict;
     }
 
 
-    public void setDispatchStrategy(
-            DispatchStrategy dispatchStrategy) {
+    public void setDispatchStrategy(DispatchStrategy dispatchStrategy) {
 
         if (dispatchStrategy == null) {
-            throw new IllegalArgumentException(
-                    "Dispatch strategy is required."
-            );
+            throw new IllegalArgumentException("Dispatch strategy is required.");
         }
 
         this.dispatchStrategy = dispatchStrategy;
     }
 
 
-    public void setAvailabilityStatus(
-            AvailabilityStatus availabilityStatus) {
+    public void setAvailabilityStatus(AvailabilityStatus availabilityStatus) {
 
         if (availabilityStatus == null) {
             throw new IllegalArgumentException("Availability status is required.");
