@@ -264,8 +264,7 @@ public class RestaurantConsole {
 
         LocalDate today = LocalDate.now();
 
-        List<Order> todayOrders =
-                platform.getOrders().values().stream()
+        List<Order> todayOrders = platform.getOrders().values().stream()
                         .filter(order -> order.getRestaurant().equals(restaurant))
                         .filter(order -> order.getPlacedAt().toLocalDate().equals(today))
                         .toList();

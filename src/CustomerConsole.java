@@ -304,12 +304,10 @@ public class CustomerConsole {
 
         double distanceKm = readNonNegativeDouble("Distance from restaurant to delivery address (km): ");
 
-        Order order =
-                builder.setTotal(0).build();
+        Order order = builder.setTotal(0).build();
 
         TotalPricingService pricingService =
                 new TotalPricingService(promotion);
-
         double total = pricingService.calculateTotal(order, distanceKm);
 
         order.setTotal(total);
